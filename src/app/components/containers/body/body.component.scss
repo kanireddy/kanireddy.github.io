@@ -1,0 +1,38 @@
+.bottom {
+    img {
+        height: 166px;
+    }
+}
+.body-container{
+    .filterContainer{
+        transition: all 0.5s;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        z-index: 3;
+        width: 100%;
+        right: 0;
+        background-color: #fcfcfc;
+        padding: 2em;
+        margin: 0;
+    }
+    .location:after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        height: 0;
+        width: 0;
+        margin-top: -2px;
+        border: solid transparent;
+        border-top-color: #202121;
+        border-width: 5px 3px;
+        transition: border 0.3s ease-in-out;
+    }
+    .location{
+        cursor: pointer;
+    }
+    img {
+        transition: opacity .3s ease-out;
+    }
+}

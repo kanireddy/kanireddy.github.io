@@ -1,0 +1,248 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+$me-color: #5f259f;
+$me-color-sec:#6f5499;
+* {
+    font-family: 'Roboto', sans-serif;
+    // transition: all .3s;
+}
+.op-0{
+    opacity: 0;
+}
+.op-1{
+    opacity: 1;
+}
+.tag-list {
+    display: inline-block;
+    li {
+        float: none;
+        display: inline-block;
+        list-style: none;
+    }
+    .item {
+        position: relative;
+        display: block;
+        height: 34px;
+        padding: 0 20px;
+        line-height: 34px;
+        color: #202121;
+        border: 1px solid #202121;
+        border-radius: 36px;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .item:hover{
+        border-color: #5f259f;
+        color: #5f259f;
+        background-color: transparent;
+    }
+}
+.bg-me {
+    background-color: #49c5b6;
+}
+.bg-me:hover {
+    background-color: #42AB9E;
+}
+
+.event-description {
+    // color: red;
+    img {
+        max-width: 100%;
+    }
+}
+
+/*search box css start here*/
+.search-sec{
+    padding: 2rem;
+}
+.search-slt{
+    display: block;
+    width: 100%;
+    // font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    // height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+@media (min-width: 992px){
+    .search-sec{
+        // position: relative;
+        top: -114px;
+        background: $me-color;
+    }
+}
+
+@media (max-width: 992px){
+    .search-sec{
+        background: $me-color;
+    }
+}
+.text-me {
+    color: $me-color;
+}
+.bg-me {
+    background-color: $me-color !important;
+}
+.bg-me-sec {
+    background-color: $me-color-sec !important;
+}
+ngb-typeahead-window, [id^='ngb-typeahead-'] {
+    min-width: 100%;
+}
+.search-sec{
+    input, input:focus, select, select:focus{
+        background: none;
+        border: none;
+        box-shadow: none;
+        color: #fff;
+    }
+    input::placeholder {
+        color: #fff;
+        font-weight: bold;
+    }
+    option {
+        color: #000;
+    }
+}
+// Resetting from the mobile up!
+// 
+// Dropping the root* element font size to 14px is something
+// I do on almost all projects, a 16px font size on mobiles
+// is not normally needed. --> Only my opinion of course!
+//
+// At mobile size I used the scale "Major Second" from 
+// type-cale.com to set out the heading sizes as well as the
+// "Major Third" scale for the .display-* classes however my
+// technique was to begin the scale from the h1's front size.
+// To do this simply do the h1 font size * scale size. So in 
+// in this example it was 1.602 * 1.250 = 2.0025 I went with 
+// 2em to keep it simple.
+//
+//------------------------------------------------------------//
+html,
+body {
+	font-size: 14px !important;
+}
+h1 {
+	font-size: 1.602em;
+}
+h2 {
+	font-size: 1.424em;
+}
+h3 {
+	font-size: 1.266em;
+}
+h4 {
+	font-size: 1.125em;
+}
+h5 {
+	font-size: 0.889em;
+}
+h6 {
+	font-size: 0.79em;
+}
+.display-1 {
+	font-size: 3.906em;
+}
+.display-2 {
+	font-size: 3.125em;
+}
+.display-3 {
+	font-size: 2.5em;
+}
+.display-4 {
+	font-size: 2em;
+}
+
+// Medium devices (tablets, 48em and up)
+// 
+// At this point you have overridden Bootstraps rem's and are
+// into module based font sizes should you require it. 
+//
+// I took a while over this change because I felt that there
+// is no reason why I cant use a modified scale on another 
+// device size. So I did, the headings have now taken on
+// "Perfect Fourth" and the dislpay-* has been put to the
+// Bootstrap defaults.
+//
+//------------------------------------------------------------//
+@media (min-width: 48em) {
+	h1 {
+	  font-size: 2.441em;
+	}
+	h2 {
+		font-size: 1.953em;
+	}
+	h3 {
+		font-size: 1.563em;
+	}
+	h4 {
+		font-size: 1.25em;
+	}
+	.display-1 {
+		font-size: 6em;
+	}
+	.display-2 {
+		font-size: 5.5em;
+	}
+	.display-3 {
+		font-size: 4.5em;
+	}
+	.display-4 {
+		font-size: 3.5em;
+	}
+}
+
+// Large devices (desktops, 62em and up)
+@media (min-width: 62em) {
+	html,
+	body {
+		font-size: 14px !important;
+	}
+}
+
+// Extra large devices (large desktops, 75em and up)
+@media (min-width: 75em) {
+	html,
+	body {
+		font-size: 16px !important;
+	}
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 50%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+}
+.google-maps iframe {
+    height: 490px;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    outline: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 2px;
+    // max-width: 800px;
+    margin-top: 10px;
+}

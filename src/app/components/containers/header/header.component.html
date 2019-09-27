@@ -1,0 +1,34 @@
+<div class="header bg-white">
+  <div class="shadow m-0 py-2 align-middle">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <a class="logo" [routerLink]="['/']">
+            <img src="https://static.meraevents.com/images/static/me-logo.svg" class="img-fluid" alt="ME logo" />
+          </a>
+        </div>
+        <!-- <div class="col align-middle text-center d-sm-none d-md-none">
+          <div ngbDropdown class="d-inline-block align-middle">
+              <button class="btn btn-outline-primary" id="countryDropDown" ngbDropdownToggle>Country</button>
+              <div ngbDropdownMenu aria-labelledby="countryDropDown">
+                <span *ngFor="let country of countries" >
+                  <button 
+                    ngbDropdownItem
+                    [ngClass]="{'active': !!(this.homeState$ | async).selectCou 
+                                    && !!(this.homeState$ | async).selectCou.id === country.id }" 
+                  >
+                    <img src="{{country.logoFilePath}}" alt="{{ country.name }}" /> {{ country.name }}
+                  </button>
+                </span>            
+              </div>
+            </div>
+        </div> -->
+        <div class="col-6 d-flex justify-content-end align-items-center">
+          <button class="header-btn btn btn-sm btn-outline-primary pl-3 pr-3 align-middle">
+            Create Event
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

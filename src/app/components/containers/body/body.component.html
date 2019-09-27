@@ -1,0 +1,119 @@
+<div class="container body-container">
+  <div class="row search-sec bg-me-sec">
+    <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+      <label for="typeahead-format" class="text-white d-inline">You're in </label>
+      <input
+        id="typeahead-focus"
+        type="text"
+        class="form-control search-slt d-inline w-auto"
+        [(ngModel)]="locModel"
+        [ngbTypeahead]="locSearch"
+        (focus)="focus$.next($event.target.value)"
+        (click)="click$.next($event.target.value)"
+        placeholder="{{ !!(homeState$ | async).selectLoc ? (homeState$ | async).selectLoc.name : 'India' }}"
+        (selectItem)="loadLocEvents($event)"
+        [resultTemplate]="locTemplate"
+        [inputFormatter]="locFormatter"
+        #locInstance="ngbTypeahead"
+      />
+      <ng-template #locTemplate let-r="result" let-t="term">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+      <label for="typeahead-format" class="text-white d-inline">looking for </label>
+      <input
+        id="typeahead-focus"
+        type="text"
+        class="form-control search-slt d-inline w-auto"
+        [(ngModel)]="catModel"
+        [ngbTypeahead]="catSearch"
+        (focus)="catFocus$.next($event.target.value)"
+        (click)="catClick$.next($event.target.value)"
+        placeholder="{{ !!(homeState$ | async).selectCat ? (homeState$ | async).selectCat.name : 'All Events' }}"
+        (selectItem)="loadCatEvents($event)"
+        [resultTemplate]="catTemplate"
+        [inputFormatter]="catFormatter"
+        #catInstance="ngbTypeahead"
+      />
+      <ng-template #catTemplate let-r="result" let-t="term">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+      </ng-template>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+      <label for="typeahead-format" class="text-white  d-inline">events happening</label>
+      <select class="form-control search-slt  d-inline w-auto" id="exampleFormControlSelect1">
+        <option>All Time</option>
+        <option>Today</option>
+        <option>Tomorrow</option>
+        <option>This Week</option>
+        <option>This Weekend</option>
+        <option>This Month</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!!events">
+    <div class="col-lg-4 col-md-6" *ngFor="let event of events">
+      <a class="text-reset text-decoration-none border-white" [routerLink]="['/event', event.id]">
+        <div class="card m-2 rounded-0" [ngClass]="event.shadowClass"
+          [ngStyle]="{'border-color': event.borderColor || '#fff'}"
+          (mouseover)="event.shadowClass='shadow-lg'; event.borderColor=event.themeColor"
+          (mouseout)="event.shadowClass='border-white'">
+          <img 
+            src="{{event.thumbImage || event.defaultThumbImage}}" 
+            class="w-100" 
+            style="min-height: 200px;"
+            [class.op-0]="!event.opacity"
+            (load)="event.opacity = 1"
+            alt="{{event.title}}" />
+          <div class="card-body pl-2 pr-2 pt-2 pb-2">
+            <div class="card-text">
+              <h5 class="text-truncate" title="{{event.title}}">{{event.title}}</h5>
+              <small>
+                <div class="text-black-50 text-truncate" title="{{event.venueName + ' - ' +event.cityName}}">
+                  {{event.venueName}}
+                </div>
+                <span class="text-black-50" title="{{event.startDate | date: 'medium'}}">
+                  {{event.masterEvent ? 'Multiple Dates' : event.startDate | date: 'fullDate'}}
+                </span>
+              </small>
+            </div>
+          </div>
+          <div class="card-footer bg-white">
+            <span class="float-left">
+              <small class="text-muted" title="{{event.categoryName + ' - ' +event.subCategoryName}}">
+                {{ event.categoryName }}
+              </small>
+            </span>
+            <span class="float-right">
+              <small class="text-muted"> {{ event.booknowButtonValue }} </small>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="this.moreEvents$ | async">
+    <div class="col text-center m-4 ">
+      <button type="button" class="btn btn-outline-primary" (click)="loadMoreEvents()">
+        Load More
+      </button>
+    </div>
+  </div>
+  <div>
+    <div class="row bottom justify-content-center">
+      <div *ngFor="let category of categories; let index=index">
+        <div class="col category text-center p-0 d-flex align-items-center align-self-center ml-2 mr-2"
+          *ngIf="index < 6" [routerLink]="['/' + category.value + '-events']">
+          <img class="position-relative mx-auto" src="{{category.imagefileid}}"
+            [style.border-bottom]="'4px solid' + category.themecolor" />
+          <div class="w-100 position-absolute my-auto">
+            <br><br><br><br>
+            <small class="text-white font-italic" style="z-index: 1;">{{category.name}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
