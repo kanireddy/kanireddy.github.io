@@ -33,6 +33,16 @@
         cursor: pointer;
     }
     img {
-        transition: opacity .3s ease-out;
+        transition: all .3s ease-out;
+    }
+    .event-item {
+        &:hover img {
+            transform: scale(1.1);
+        }
+        .event-item-img {
+            overflow: hidden;
+            max-height: 200px;
+            max-width: 100%;
+        }
     }
 }
